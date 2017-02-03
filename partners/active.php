@@ -9,10 +9,10 @@ if(isset($_POST["ID"]) AND is_numeric($_POST["ID"])) {
 	
 	
 	$arSortProduct= Array("NAME"=>"ASC");
-    $arSelectProduct = Array("ID","ACTIVE");
-    $arFilterProduct = Array("IBLOCK_ID" => 23, "ID" => $ID);
- 
-    $resProduct =  CIBlockElement::GetList($arSortProduct, $arFilterProduct, false, false, $arSelectProduct);
+	$arSelectProduct = Array("ID","ACTIVE");
+	$arFilterProduct = Array("IBLOCK_ID" => 23, "ID" => $ID);
+	
+	$resProduct =  CIBlockElement::GetList($arSortProduct, $arFilterProduct, false, false, $arSelectProduct);
 	$obProduct = $resProduct->GetNextElement();
 	$arFieldsProduct = $obProduct->GetFields();
 	$ACTIVE = $arFieldsProduct['ACTIVE'];
@@ -26,7 +26,7 @@ if(isset($_POST["ID"]) AND is_numeric($_POST["ID"])) {
 	}
 	
 	$obEl = new CIBlockElement();
-    $boolResult = $obEl->Update($ID,array('ACTIVE' => $ACTIVE));
+	$boolResult = $obEl->Update($ID,array('ACTIVE' => $ACTIVE));
 	
 	echo $result;
 }
