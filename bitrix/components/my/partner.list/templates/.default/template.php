@@ -2,11 +2,14 @@
 
 $this->setFrameMode(true);
 
-foreach($arResult["ITEMS1"] as $arItem):
-   echo "<br><font size=5'><a href='".$arParams["DETAIL_PAGE_URL"]."?".$arParams["PARAM_GET"]."=".$arItem["ID"]."'><b>".$arItem["NAME"]."</b></a><br>";
-endforeach;
+foreach($arResult["ITEMS1"] as $arItem): ?>
+   <br><font size=5'><a href='<?=$arParams["DETAIL_PAGE_URL"]?><?=$arItem["ID"]?>'><b><?=$arItem["NAME"]?></b></a><br>
 
-echo "<br>Партнеры:<br>";
-echo $arResult["RES"]->NavPrint();
+<?endforeach; ?>
+
+<br>Партнеры:<br>
+
+<?echo $arResult["RES"]->NavPrint();
 
 ?>
+

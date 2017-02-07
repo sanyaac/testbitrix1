@@ -14,7 +14,7 @@ $arParams["PRODUCT_ID"] = trim($arParams["PRODUCT_ID"]);
 
 
 $arSortProduct = Array("ID"=>"DESC");
-$arSelectProduct = Array("ID","NAME", "PROPERTY_PARTNER");
+$arSelectProduct = Array("NAME", "PROPERTY_PARTNER");
 $arFilterProduct = Array("IBLOCK_ID" => $arParams["IBLOCK_ID"], "ID" => $arParams["PRODUCT_ID"]);
 
 $resProduct =  CIBlockElement::GetList($arSortProduct, $arFilterProduct, false, false, $arSelectProduct);
@@ -25,7 +25,7 @@ $arResult["ITEMS1"][0]["IDPARTNER"] = $arFieldsProduct['PROPERTY_PARTNER_VALUE']
 $arResult["ITEMS1"][0]["NAME"] = $arFieldsProduct['NAME'];
 
 $arSortPartner= Array("NAME"=>"ASC");
-$arSelectPartner = Array("ID","NAME", "PROPERTY_CONTENT", "PROPERTY_DELIVERY_CONDITION", "PROPERTY_OPERATOR");
+$arSelectPartner = Array("NAME", "PROPERTY_CONTENT", "PROPERTY_DELIVERY_CONDITION", "PROPERTY_OPERATOR");
 $arFilterPartner = Array("IBLOCK_ID" => $arParams["PAR_IBLOCK_ID"], "ID" => $arResult["ITEMS1"][0]["IDPARTNER"]);
 
 $resPartner =  CIBlockElement::GetList($arSortPartner, $arFilterPartner, false, false, $arSelectPartner);

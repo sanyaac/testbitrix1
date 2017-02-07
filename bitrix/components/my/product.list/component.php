@@ -34,8 +34,8 @@ while($obProduct = $resProduct->GetNextElement()) {
 $arResult["RES"] = $resProduct;
 
 $arSortPartner= Array("NAME"=>"ASC");
-$arSelectPartner = Array("ID","NAME", "PROPERTY_OPERATOR");
-$arFilterPartner = Array("IBLOCK_ID" => "22", "ID" => $arParams["PARTNER_ID"]);
+$arSelectPartner = Array("PROPERTY_OPERATOR");
+$arFilterPartner = Array("IBLOCK_ID" => $arParams["PAR_IBLOCK_ID"], "ID" => $arParams["PARTNER_ID"]);
 
 $resPartner =  CIBlockElement::GetList($arSortPartner, $arFilterPartner, false, false, $arSelectPartner);
 $obPartner = $resPartner->GetNextElement();

@@ -2,12 +2,12 @@
 
 class PartnerInfo
 {
-	public static function onePartner($id)
+	public static function onePartner($id, $blockId)
 	{
 		if(CModule::IncludeModule('iblock')) {
 			$arSortPartner= Array("NAME"=>"ASC");
-			$arSelectPartner = Array("ID","NAME", "PROPERTY_OPERATOR");
-			$arFilterPartner = Array("IBLOCK_ID" => 22, "PROPERTY_OPERATOR" => $id);
+			$arSelectPartner = Array("ID");
+			$arFilterPartner = Array("IBLOCK_ID" => $blockId, "PROPERTY_OPERATOR" => $id);
 			
 			$resPartner =  CIBlockElement::GetList($arSortPartner, $arFilterPartner, false, false, $arSelectPartner);
 			$obPartner = $resPartner->GetNextElement();
@@ -18,13 +18,13 @@ class PartnerInfo
 		}
 	}
 	
-	public static function countPartners($id)
+	public static function countPartners($id, $blockId)
 	{
 		
 		if(CModule::IncludeModule('iblock')) {
 			$arSortPartner= Array("NAME"=>"ASC");
-			$arSelectPartner = Array("ID","NAME", "PROPERTY_OPERATOR");
-			$arFilterPartner = Array("IBLOCK_ID" => 22, "PROPERTY_OPERATOR" => $id);
+			$arSelectPartner = Array("ID");
+			$arFilterPartner = Array("IBLOCK_ID" => $blockId, "PROPERTY_OPERATOR" => $id);
 			
 			$resPartner =  CIBlockElement::GetList($arSortPartner, $arFilterPartner, false, false, $arSelectPartner);
 			$Count = intval($resPartner->SelectedRowsCount());

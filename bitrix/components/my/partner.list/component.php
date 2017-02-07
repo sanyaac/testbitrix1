@@ -17,7 +17,7 @@ if($arParams["NEWS_COUNT"]<=0)
 $i = 0;		
 		
 $arSortPartner= Array("ID"=>"DESC");
-$arSelectPartner = Array("ID","NAME", "PROPERTY_OPERATOR");
+$arSelectPartner = Array("ID","NAME");
 $arFilterPartner = Array("IBLOCK_ID" => $arParams["IBLOCK_ID"], "PROPERTY_OPERATOR" => $arParams["USER_ID"]);
 
 $resPartner =  CIBlockElement::GetList($arSortPartner, $arFilterPartner, false, Array("nPageSize"=>$arParams["NEWS_COUNT"]), $arSelectPartner);

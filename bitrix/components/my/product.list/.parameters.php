@@ -7,10 +7,15 @@ if(!CModule::IncludeModule("iblock"))
 
 $arTypesEx = CIBlockParameters::GetIBlockTypes(array("-"=>" "));
 
-$arIBlocks=array();
+$arIBlocks1=array();
+$arIBlocks2=array();
 $db_iblock = CIBlock::GetList(array("SORT"=>"ASC"), array("SITE_ID"=>$_REQUEST["site"], "TYPE" => ($arCurrentValues["IBLOCK_TYPE"]!="-"?$arCurrentValues["IBLOCK_TYPE"]:"")));
 while($arRes = $db_iblock->Fetch())
-	$arIBlocks[$arRes["ID"]] = $arRes["NAME"];
+	$arIBlocks1[$arRes["ID"]] = $arRes["NAME"];
+
+$db_iblock = CIBlock::GetList(array("SORT"=>"ASC"), array("SITE_ID"=>$_REQUEST["site"], "TYPE" => ($arCurrentValues["PAR_IBLOCK_TYPE"]!="-"?$arCurrentValues["PAR_IBLOCK_TYPE"]:"")));
+while($arRes = $db_iblock->Fetch())
+	$arIBlocks2[$arRes["ID"]] = $arRes["NAME"];
 
 $arProperty_LNS = array();
 $rsProp = CIBlockProperty::GetList(array("sort"=>"asc", "name"=>"asc"), array("ACTIVE"=>"Y", "IBLOCK_ID"=>(isset($arCurrentValues["IBLOCK_ID"])?$arCurrentValues["IBLOCK_ID"]:$arCurrentValues["ID"])));
@@ -37,7 +42,24 @@ $arComponentParameters = array(
 			"PARENT" => "BASE",
 			"NAME" => GetMessage("T_IBLOCK_DESC_LIST_ID"),
 			"TYPE" => "LIST",
-			"VALUES" => $arIBlocks,
+			"VALUES" => $arIBlocks1,
+			"DEFAULT" => '={$_REQUEST["ID"]}',
+			"ADDITIONAL_VALUES" => "Y",
+			"REFRESH" => "Y",
+		),
+		"PAR_IBLOCK_TYPE" => array(
+			"PARENT" => "BASE",
+			"NAME" => GetMessage("P_IBLOCK_DESC_LIST_TYPE"),
+			"TYPE" => "LIST",
+			"VALUES" => $arTypesEx,
+			"DEFAULT" => "news",
+			"REFRESH" => "Y",
+		),
+		"PAR_IBLOCK_ID" => array(
+			"PARENT" => "BASE",
+			"NAME" => GetMessage("P_IBLOCK_DESC_LIST_ID"),
+			"TYPE" => "LIST",
+			"VALUES" => $arIBlocks2,
 			"DEFAULT" => '={$_REQUEST["ID"]}',
 			"ADDITIONAL_VALUES" => "Y",
 			"REFRESH" => "Y",
